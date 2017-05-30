@@ -1,0 +1,102 @@
+# Part 1
+1. man ls
+
+2. ls -S
+
+3. ls ../
+
+4. mv data.dat 2017-01.dat
+
+
+5. mv 2017-01.dat historic/
+
+6. cat historic/2017-01.dat
+
+7. head -5 historic/2017-01.dat
+
+8. tail -5 historic/2017-01.dat
+
+9. less historic/2017-01.dat 
+(and you press spacebar to go one page at a time through the contents and press 'q' when done)
+
+
+10. rm -r historic/
+
+OR, by deleting manually:
+
+rm historic/2017-01.dat
+rmdir historic
+
+
+
+
+
+
+
+# Part 2
+
+1. wc readme.txt = same as wc -lwm readme.txt prints out the number of lines, words, and characters, respectively, all on the same line next to the file name. The -l means it finds number of lines, the -w means it finds number of words, and the -m means it finds number of characters, including spaces and newlines. 
+
+2. wc -L readme.txt = prints the length of the longest line in readme.txt. This counts the
+number of characters in the longest line, including spaces and newlines. 
+
+3. grep WARNING readme.txt = prints out the lines from readme, line by line, which have the character sequence WARNING. For example, if readme contained: 
+hi there how are you
+WARNING, big puddle
+another WARNING
+this is a lowercase warning
+see you later
+
+Then the command would output: 
+WARNING, big puddle
+another WARNING
+
+The command is case-sensitive so if "warning" has any other case than all capitals, grep ignores it. 
+
+
+4. grep WARNING readme.txt > warnings.txt = outputs the lines containing WARNING from readme into the file called warnings.txt. The content now in warnings.txt are displayed line by line. 
+
+5. head warnings.txt = prints the first 10 lines of warnings.txt. If there are less than or equal to 10 lines, then it displays all of them. 
+
+6. grep WARNING readme.txt | tee warnings.txt | head
+
+(1) grep outputs any lines from readme containing the word WARNING
+(2) the pipe operator | passes that output to the tee command which places the output in a file named warnings.txt. If there was anything in the warnings.txt file before, it is erased and the new content replaces it. "tee" also outputs the new contents of warnings.txt to the standard output or terminal screen. 
+(3) another pipe operator | passes the screen output of tee warnings.txt, which is the contents of warnings.txt, into the head function, which displays the first 10 lines of the output.
+
+
+7. ls *.dat = lists any filename ending in .dat from the current directory.
+
+8. ls [aZ]*.dat = the [] operator matches any filename that begins with 'a' or 'Z', for any filename in the current directory. 
+ 
+This will match, for example: 
+(1) a1Zsomething.dat
+(2) aSOMeZanotherthing.dat
+(3) aZsomething.dat
+(4) ZaSOME.dat
+(5) Z__a.dat
+(6) a.dat
+(7) Z.dat
+
+It will match these because they all contain the characters 'a' or 'Z'. But it would not match _a.dat nor
+_Z.dat because 'a' and 'Z' are not supposed to have any character coming before them. 
+
+The contents inside the brackets are like single question marks that can only substitute one character in a filename. Each filename must begin with either 'a' or 'Z' and can have other characters coming after them but must also end in .dat
+
+
+
+9. ls *[aZ]*.dat = same as the previous command except characters are allowed to come before either 'a' or 'Z'. So the file CAT_a_FLY.dat would be listed, as well as CAT_Z_FLY.dat, in addition to the previous list in #8. 
+
+
+10. ls [aZ]*.??? = matches exactly any filename that begins with EITHER 'a' or 'Z', that can have some charcters following a or Z and after the dot, and ends with exactly any three characters after the dot. This is the same as #8, except any filename extension that is 3 characters in length is also listed as well. For example, aPARK.txt or Zweb.tgz are listed. 
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,16 @@
+## This is from the other command
+reportAA.txt
+reporta.txt
+reportA.txt
+reportB.txt
+reportC.txt
+reportD.txt
+reportE.txt
+
+## This is from the ls -l report?.txt command
+reporta.txt
+reportA.txt
+reportB.txt
+reportC.txt
+reportD.txt
+reportE.txt

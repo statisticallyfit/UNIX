@@ -1,0 +1,210 @@
+# 1
+mkdir somejunk 
+
+-------------------------------------------------------------------------------
+# 2
+pico somejunk/junk
+
+**** CORRECTION (CAN ALSO WRITE):
+echo "This file contains no useful information" > somejunk/junk
+
+
+-------------------------------------------------------------------------------
+# 3
+cd somejunk/
+
+-------------------------------------------------------------------------------
+# 4
+ls -l junk
+-rw-rw-r-- 1 statisticallyfit statisticallyfit 41 Feb 28 10:05 junk
+
+-------------------------------------------------------------------------------
+# 5
+Group: statisticallyfit (me)
+Permissions: read, write
+
+-------------------------------------------------------------------------------
+# 6
+User: read, write
+Group: read, write
+Others: read
+
+-------------------------------------------------------------------------------
+# 7
+chmod a-r junk
+--w--w---- 1 statisticallyfit statisticallyfit 41 Feb 28 10:05 junk
+
+
+-------------------------------------------------------------------------------
+# 8
+cat junk
+cat: junk: Permission denied
+
+-------------------------------------------------------------------------------
+# 9
+chmod u+r junk
+-rw-rw-r-- 1 statisticallyfit statisticallyfit 41 Feb 28 10:05 junk
+cat junk
+This file contains no useful information
+
+****** OR CAN WRITE: 
+chmod u+r junk && cat junk
+
+
+-------------------------------------------------------------------------------
+# 10
+chmod a+r junk
+-rw-rw-r-- 1 statisticallyfit statisticallyfit 41 Feb 28 10:05 junk
+
+-------------------------------------------------------------------------------
+# 11 
+cd
+rm -r somejunk
+
+-------------------------------------------------------------------------------
+# 12
+ls prac *
+prac023.txt
+prac0.txt
+prac45
+prac4.txt
+practical
+practical1.txt
+practicality101
+
+
+***** CORRECTION: if this is outputted into file, we see one per line. But to 
+get this in the command line we write:
+
+ls -1d prac* or
+ls -1 prac*
+
+-------------------------------------------------------------------------------
+
+# 13
+ls prac* >> pracDirs
+
+****** CORRECTION:
+ls -1 prac* > pracDirs
+
+-------------------------------------------------------------------------------
+# 14
+ls prac* | wc -l
+8
+
+## this is content of pracDirs
+prac023.txt
+prac0.txt
+prac45
+prac4.txt
+practical
+practical1.txt
+practicality101
+
+
+-------------------------------------------------------------------------------
+# 15
+(ls prac* ; ls prac* | wc -l) | tee pracDirs
+
+prac023.txt
+prac0.txt
+prac45
+prac4.txt
+pracDirs
+practical
+practical1.txt
+practicality101
+8
+
+cat pracDirs
+
+prac023.txt
+prac0.txt
+prac45
+prac4.txt
+pracDirs
+practical
+practical1.txt
+practicality101
+8
+
+##### neater command:
+ls prac* | tee pracDirs | wc -l >> pracDirs
+
+
+
+
+********* CORRECTION: didn't need to add the number, so could just have written:
+ls prac* | tee pracDirs | wc -l
+
+
+-------------------------------------------------------------------------------
+# 16
+
+# Step 1: making content
+
+#!/bin/bash
+# echo Starting
+echo Starting
+#printing hello world
+echo "Hello World!"
+number=23
+echo "My birthday number is $number"
+# echo Finished
+echo Finished
+
+# Step 2: 
+chmod u+x hello.sh
+
+# Step 3: 
+./hello.sh
+
+
+
+-------------------------------------------------------------------------------
+# 17
+# sumInt.sh
+
+# Reading in: 
+echo Starting
+read -p "Write two integers: " x y
+echo "Their sum is: $((x+y))"
+echo Finished
+
+
+-------------------------------------------------------------------------------
+# 18
+### NEED help here! Not working...
+
+# sumIntLoop.sh
+
+# Reading in: 
+echo Starting
+
+#x=-1
+#y=-1
+#until ["$x" -gt 0 && "$y" -gt 0]; do 
+#	read -p "Give two non-negative integers: " x y
+#done
+#echo "Their sum is: $((x+y))"
+
+
+# -------------------------------------------------------
+
+read -p "Enter first number: " x 
+while [[ x -lt 0 ]]
+do 
+	read -p "Enter first number (non-negative): " x 
+done 
+read -p "Enter second number: " y
+while [[ y -lt 0 ]]
+do 
+	read -p "Enter second number (non-negative): " x 
+done 
+sum=$((x+y))
+echo "$x + $y = $sum"
+
+
+
+
+echo Finished

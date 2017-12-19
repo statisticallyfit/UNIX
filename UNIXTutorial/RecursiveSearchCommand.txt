@@ -1,0 +1,4 @@
+This is how you can recursively search for a keyword: 
+
+
+ls -la `find . -name '*SEARCHWORD*' -print`
